@@ -1,1 +1,738 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ericha Yudist Az-Zahra</title>
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        /* Warna yang digunakan */
+        :root {
+            --primary: #6C63FF;
+            --secondary: #FF6584;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --text: #2d3436;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+        }
+
+        /* ========== NAVIGATION BAR ========== */
+        nav {
+            background:var(--dark);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* ========== HERO SECTION ========== */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .hero h2 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            font-weight: normal;
+        }
+
+        .hero p {
+            font-size: 1.1em;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            line-height: 1.8;
+        }
+
+        .profile-img-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 6px solid rgba(255,255,255,0.4);
+            object-fit: cover;
+            margin: 30px auto;
+            display: block;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-img-photo:hover {
+            transform: scale(1.05);
+        }
+
+        /* Backup jika foto tidak ada - tampilkan emoji */
+        .profile-img-fallback {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: white;
+            margin: 30px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4em;
+            border: 5px solid rgba(255,255,255,0.3);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5em;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            opacity: 0.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        /* ========== CONTAINER ========== */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* ========== SECTION STYLES ========== */
+        section {
+            margin-bottom: 60px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-header h2 {
+            font-size: 2.2em;
+            color: var(--text);
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        .section-header p {
+            color: #666;
+            font-size: 1em;
+            margin-top: 15px;
+        }
+
+        /* ========== ABOUT SECTION ========== */
+        .about-text {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            color: #666;
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+
+        /* ========== SKILLS SECTION ========== */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .skill-card {
+            background: var(--light);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .skill-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            background: white;
+            padding: 6px 15px;
+            border-radius: 15px;
+            font-size: 0.9em;
+            border: 1px solid #ddd;
+        }
+
+        /* ========== TIMELINE (Education & Activities) ========== */
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--primary);
+        }
+
+        .timeline-item {
+            position: relative;
+            background: var(--light);
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -33px;
+            top: 30px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 3px solid white;
+        }
+
+        .timeline-item:hover {
+            background: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .timeline-item h3 {
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        .timeline-meta {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .timeline-item ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .timeline-item li {
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        /* ========== PROJECTS SECTION ========== */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-top: 4px solid var(--primary);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 40px;
+            text-align: center;
+            font-size: 3em;
+        }
+
+        .project-body {
+            padding: 20px;
+        }
+
+        .project-body h3 {
+            color: var(--text);
+            margin-bottom: 10px;
+        }
+
+        .project-tech {
+            color: var(--primary);
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .project-body p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* ========== ACHIEVEMENTS SECTION ========== */
+        .achievement-card {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(108, 99, 255, 0.3);
+        }
+
+        .achievement-card h3 {
+            margin-bottom: 10px;
+        }
+
+        /* ========== CONTACT SECTION ========== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .contact-item {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-item .icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .contact-item h4 {
+            margin-bottom: 10px;
+        }
+
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .timeline {
+                padding-left: 30px;
+            }
+
+            .timeline::before {
+                left: 10px;
+            }
+
+            .timeline-item::before {
+                left: -28px;
+            }
+        }
+
+        /* Transisi smooth untuk hover effects */
+        .skill-card,
+        .timeline-item,
+        .project-card,
+        .achievement-card,
+        .contact-item,
+        .btn {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo"><b>Portfolio</b></div>
+        <ul class="nav-links">
+            <li><a href="#about"><b>About</b></a></li>
+            <li><a href="#skills"><b>Skills</b></a></li>
+            <li><a href="#education"><b>Education</b></a></li>
+            <li><a href="#projects"><b>Projects</b></a></li>
+            <li><a href="#activities"><b>Activities</b></a></li>
+            <li><a href="#contact"><b>Contact</b></a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <img src="ASSETS/profil.jpg" alt="Foto Profil" class="profile-img-photo">
+        <h1>Hi, I'm Ericha</h1>
+        <h2>Mathematics Student | ITS Surabaya</h2>
+        <p>Passionate mathematics student at Sepuluh Nopember Institute of Technology with strong analytical and problem-solving skills. Experienced in mathematical modeling, programming, and actively involved in various organizations.</p>
+        
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- About Section -->
+        <section id="about">
+            <div class="section-header">
+                <h2>About Me</h2>
+                <p>Get to know more about my background and interests</p>
+            </div>
+            <p class="about-text">
+                I am a driven undergraduate student currently pursuing a degree in Mathematics. I have a strong background in analytical problem-solving and a passion for learning. My goal is to leverage my education to drive innovation and make a positive impact in the academics field. I am eager to gain practical experience and contribute to projects that will help me develop my skills and advance my career.
+            </p>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <div class="section-header">
+                <h2>Technical Skills</h2>
+                <p>Technologies and tools I work with</p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>Programming Languages</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">MATLAB</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h3>Software & Tools</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Microsoft Office</span>
+                        <span class="skill-tag">Excel</span>
+                        <span class="skill-tag">Word</span>
+                        <span class="skill-tag">PowerPoint</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h3>Languages</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Indonesian (Native)</span>
+                        <span class="skill-tag">English (Proficient)</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education">
+            <div class="section-header">
+                <h2>Education</h2>
+                <p>My academic background</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>Sepuluh Nopember Institute of Technology (ITS)</h3>
+                    <div class="timeline-meta">Bachelor of Science in Mathematics | 2022 - Present</div>
+                    <p style="color: #666;"> Surabaya, Indonesia</p>
+                    <ul>
+                        <li>Active participation in various campus organizations and committees</li>
+                        <li>Completed projects in mathematical modeling, programming, and data analysis</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h3>SMA Darul Ulum 2 Unggulan BPPT Jombang</h3>
+                    <div class="timeline-meta">Senior High School | 2019 - 2022</div>
+                    <p style="color: #666;"><strong>Top 30 Students in 2022 Batch</strong> | Jombang, Indonesia</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <div class="section-header">
+                <h2>University Projects</h2>
+                <p>Academic projects and research work</p>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">🎮</div>
+                    <div class="project-body">
+                        <h3>Flappy Bird Game</h3>
+                        <div class="project-tech">Java • OOP • Game Development</div>
+                        <p>Developed a simplified Flappy Bird game using object-oriented programming, incorporating gravity, collision detection, and a scoring system.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-header">🧬</div>
+                    <div class="project-body">
+                        <h3>Modeling the Spread of HIV/AIDS</h3>
+                        <div class="project-tech">Mathematical Modeling • MATLAB</div>
+                        <p>Designed a mathematical model using differential equations to predict HIV/AIDS transmission dynamics and analyze infection rates.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-header">🦟</div>
+                    <div class="project-body">
+                        <h3>Dengue Fever Spread Modeling Using SIR Method</h3>
+                        <div class="project-tech">SIR Model • Epidemiology</div>
+                        <p>Implemented the SIR model to simulate dengue fever spread and evaluate public health intervention strategies.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievements Section -->
+        <section id="achievements">
+            <div class="section-header">
+                <h2>Achievements</h2>
+                <p>Recognition and accomplishments</p>
+            </div>
+            <div class="achievement-card">
+                <h3>🏆 PRISMA by Mataram University</h3>
+                <p><strong>Finalist in Scientific Writing • 2024</strong></p>
+                <p>Selected as a finalist in the prestigious scientific writing competition organized by Mataram University, demonstrating strong research and academic writing capabilities.</p>
+            </div>
+            <div class="achievement-card">
+                <h3>🌟 MENTORKUY by produktifkuy</h3>
+                <p><strong>Best Mentee • 2023</strong></p>
+                <p>Awarded as the Best Mentee in MENTORKUY program by produktifkuy, recognizing outstanding learning progress, active participation, and dedication throughout the mentorship program.</p>
+            </div>
+        </section>
+
+        <!-- Activities Section -->
+        <section id="activities">
+            <div class="section-header">
+                <h2>Activities & Organizations</h2>
+                <p>Campus involvement and organizational experience</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>HIMATIKA ITS (Mathematics Student Association)</h3>
+                    <div class="timeline-meta">Internal Affairs Department | 2024</div>
+                    <p style="color: #666;">Surabaya, Indonesia</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>LKKI Matematika ITS</h3>
+                    <div class="timeline-meta">Kemuslimahan Department | 2023-2024</div>
+                    <p style="color: #666;">Surabaya, Indonesia</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Teater Tiyang Alit</h3>
+                    <div class="timeline-meta">External Affairs Department | 2024</div>
+                    <p style="color: #666;">Surabaya, Indonesia</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>OMITS 17 (Olimpiade Matematika ITS)</h3>
+                    <div class="timeline-meta">Medical and Consumption Division | 2024</div>
+                    <p style="color: #666;">Surabaya, Indonesia</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>ILITS (Ini Lho ITS) Nganjuk</h3>
+                    <div class="timeline-meta">Kestari Division | 2024</div>
+                    <p style="color: #666;">Nganjuk, Indonesia</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>HIMAKERTA Fest</h3>
+                    <div class="timeline-meta">Event Division | 2023</div>
+                    <p style="color: #666;">Nganjuk, Indonesia</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>SCETCH (Sport and Art Competition)</h3>
+                    <div class="timeline-meta">Security and License Division | 2023</div>
+                    <p style="color: #666;">Surabaya, Indonesia</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>ILITS (Ini Lho ITS) Nganjuk</h3>
+                    <div class="timeline-meta">Public Relations Division | 2023</div>
+                    <p style="color: #666;">Nganjuk, Indonesia</p>
+                </div>            
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="section-header">
+                <h2>Let's Connect</h2>
+                <p>Feel free to reach out for collaboration or discussion</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <div class="icon">📧</div>
+                    <h4>Email</h4>
+                    <a href="mailto:erichazahra3@gmail.com">erichazahra3@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <div class="icon">📱</div>
+                    <h4>WhatsApp</h4>
+                    <a href="https://wa.me/6281233813746">+62 812-3381-3746</a>
+                </div>
+                <div class="contact-item">
+                    <div class="icon">💼</div>
+                    <h4>LinkedIn</h4>
+                    <a href="https://www.linkedin.com/in/erichayudist/">linkedin.com/in/erichayudist</a>
+                </div>
+                <div class="contact-item">
+                    <div class="icon">📍</div>
+                    <h4>Location</h4>
+                    <a href="#">Surabaya, Indonesia</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p><strong>Ericha Yudist Az-Zahra</strong></p>
+        <p>Mathematics Student | ITS Surabaya</p>
+        <p style="margin-top: 15px; opacity: 0.7;">© 2025 All Rights Reserved</p>
+    </footer>
+
+    <script>
+        // Smooth scroll untuk navigasi
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
